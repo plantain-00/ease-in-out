@@ -18,7 +18,7 @@ An ease-in-out no-css animation library.
 import EaseInOut from "ease-in-out";
 // <script src="./node_modules/ease-in-out/ease-in-out.min.js"></script>
 
-const contentElement = document.getElementById("conent");
+const contentElement = document.getElementById("content");
 const contentScroll = new EaseInOut(currentValue => {
     contentElement.scrollTop = currentValue;
 });
