@@ -1,3 +1,6 @@
+/**
+ * @public
+ */
 export default class EaseInOut {
     private radius: number;
     private count: number;
