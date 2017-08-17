@@ -9,7 +9,7 @@ export default class EaseInOut {
     private duration: number;
     private currentRequest: number;
     constructor(private updated: (currentValue: number) => void) { }
-    start(initialValue: number, targetValue: number, duration = 500) {
+    public start(initialValue: number, targetValue: number, duration = 500) {
         this.targetValue = targetValue;
         this.duration = duration;
         this.count = 0;
