@@ -8,7 +8,8 @@
     "lint": "clean-scripts lint",
     "test": "clean-scripts test",
     "fix": "clean-scripts fix",
-    "release": "clean-scripts release"
+    "release": "clean-scripts release",
+    "screenshot": "clean-scripts screenshot"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,12 @@
   "homepage": "https://github.com/plantain-00/ease-in-out#readme",
   "devDependencies": {
     "@types/jasmine": "2.6.0",
+    "@types/puppeteer": "0.10.2",
     "clean-release": "1.3.5",
     "clean-scripts": "1.4.2",
     "jasmine": "2.8.0",
     "no-unused-export": "1.3.0",
+    "puppeteer": "0.12.0",
     "rimraf": "2.6.2",
     "rollup": "0.50.0",
     "rollup-plugin-node-resolve": "3.0.0",

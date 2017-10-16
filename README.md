@@ -22,5 +22,5 @@ const contentElement = document.getElementById("content");
 const contentScroll = new EaseInOut(currentValue => {
     contentElement.scrollTop = currentValue;
 });
-this.contentScroll.start(contentElement.scrollTop, contentElement.scrollTop + 100);
+contentScroll.start(contentElement.scrollTop, contentElement.scrollTop + 100);
 ```

@@ -1,9 +1,10 @@
 const childProcess = require('child_process')
 const util = require('util')
+const { Service } = require('clean-scripts')
 
 const execAsync = util.promisify(childProcess.exec)
 
-const tsFiles = `"src/**/*.ts" "spec/**/*.ts" "demo/**/*.ts"`
+const tsFiles = `"src/**/*.ts" "spec/**/*.ts" "screenshots/**/*.ts"`
 const jsFiles = `"*.config.js"`
 
 module.exports = {
@@ -32,5 +33,10 @@ module.exports = {
     ts: `tslint --fix ${tsFiles}`,
     js: `standard --fix ${jsFiles}`
   },
-  release: `clean-release`
+  release: `clean-release`,
+  screenshot: [
+    new Service(`http-server -p 8000`),
+    `tsc -p screenshots`,
+    `node screenshots/index.js`
+  ]
 }

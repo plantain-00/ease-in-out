@@ -1,0 +1,15 @@
+<div id="content" style="height: 100%; overflow-y: auto;">
+    <button onclick="foo()">scroll</button>
+    <div style="height: 2000px"></div>
+</div>
+<script src="../dist/ease-in-out.min.js"></script>
+<script>
+    var contentElement = document.getElementById("content");
+    function foo() {
+        var contentScroll = new EaseInOut(currentValue => {
+            console.log(currentValue)
+            contentElement.scrollTop = currentValue;
+        });
+        contentScroll.start(contentElement.scrollTop, contentElement.scrollTop + 100);
+    }
+</script>
