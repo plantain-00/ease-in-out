@@ -7,11 +7,11 @@ import * as puppeteer from "puppeteer";
 
     await page.goto(`http://localhost:8000/demo/`);
     await page.waitFor(500);
-    await page.screenshot({ path: `screenshots/initial.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/initial.png` });
 
     await page.click("button");
     await page.waitFor(1000);
-    await page.screenshot({ path: `screenshots/scrolled.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/scrolled.png` });
 
     browser.close();
 })();
