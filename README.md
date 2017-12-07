@@ -8,6 +8,12 @@
 # ease-in-out
 An ease-in-out no-css animation library.
 
+#### features
+
++ ease in out
++ ease in
++ ease out
+
 #### install
 
 `npm i ease-in-out`
@@ -15,12 +21,26 @@ An ease-in-out no-css animation library.
 #### usage
 
 ```ts
-import EaseInOut from "ease-in-out";
+import * as EaseInOut from "ease-in-out";
 // <script src="./node_modules/ease-in-out/ease-in-out.min.js"></script>
 
 const contentElement = document.getElementById("content");
-const contentScroll = new EaseInOut(currentValue => {
+const contentScroll = new EaseInOut.EaseInOut(currentValue => {
     contentElement.scrollTop = currentValue;
 });
 contentScroll.start(contentElement.scrollTop, contentElement.scrollTop + 100);
+```
+
+#### change logs
+
+```
+// v2
+import { EaseInOut, EaseIn, EaseOut } from "ease-in-out";
+new EaseInOut();
+new EaseIn();
+new EaseOut();
+
+// v1
+import EaseInOut from "ease-in-out";
+new EaseInOut();
 ```

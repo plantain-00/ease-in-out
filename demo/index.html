@@ -1,12 +1,28 @@
 <div id="content" style="height: 100%; overflow-y: auto;">
-    <button onclick="foo()">scroll</button>
+    <button onclick="easeInOut()">ease in out</button>
+    <button onclick="easeIn()">ease in</button>
+    <button onclick="easeOut()">ease out</button>
     <div style="height: 2000px"></div>
 </div>
 <script src="../dist/ease-in-out.min.js"></script>
 <script>
     var contentElement = document.getElementById("content");
-    function foo() {
-        var contentScroll = new EaseInOut(currentValue => {
+    function easeInOut() {
+        var contentScroll = new EaseInOut.EaseInOut(currentValue => {
+            console.log(currentValue)
+            contentElement.scrollTop = currentValue;
+        });
+        contentScroll.start(contentElement.scrollTop, contentElement.scrollTop + 100);
+    }
+    function easeIn() {
+        var contentScroll = new EaseInOut.EaseIn(currentValue => {
+            console.log(currentValue)
+            contentElement.scrollTop = currentValue;
+        });
+        contentScroll.start(contentElement.scrollTop, contentElement.scrollTop + 100);
+    }
+    function easeOut() {
+        var contentScroll = new EaseInOut.EaseOut(currentValue => {
             console.log(currentValue)
             contentElement.scrollTop = currentValue;
         });
