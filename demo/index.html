@@ -2,6 +2,7 @@
     <button onclick="easeInOut()">ease in out</button>
     <button onclick="easeIn()">ease in</button>
     <button onclick="easeOut()">ease out</button>
+    <button onclick="linear()">linear</button>
     <div style="height: 2000px"></div>
 </div>
 <script src="../dist/ease-in-out.min.js"></script>
@@ -23,6 +24,13 @@
     }
     function easeOut() {
         var contentScroll = new EaseInOut.EaseOut(currentValue => {
+            console.log(currentValue)
+            contentElement.scrollTop = currentValue;
+        });
+        contentScroll.start(contentElement.scrollTop, contentElement.scrollTop + 100);
+    }
+    function linear() {
+        var contentScroll = new EaseInOut.Linear(currentValue => {
             console.log(currentValue)
             contentElement.scrollTop = currentValue;
         });

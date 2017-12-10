@@ -1,6 +1,6 @@
 {
   "name": "ease-in-out",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "An ease-in-out no-css animation library.",
   "main": "index.js",
   "scripts": {

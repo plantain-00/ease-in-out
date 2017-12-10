@@ -1,23 +1,22 @@
 /**
  * @public
  */
-export class EaseInOut {
-    private radius: number;
-    private count: number;
-    private oldTimestamp: number;
-    private targetValue: number;
-    private duration: number;
+export abstract class Base {
+    protected count: number;
+    protected oldTimestamp: number;
+    protected targetValue: number;
+    protected duration: number;
     private currentRequest: number;
-    constructor(private updated: (currentValue: number) => void) { }
+    constructor(protected updated: (currentValue: number) => void) { }
     public start(initialValue: number, targetValue: number, duration = 500) {
         this.targetValue = targetValue;
         this.duration = duration;
         this.count = 0;
-        this.radius = (targetValue - initialValue) / 2;
         this.oldTimestamp = performance.now();
         this.requestAnimationFrame();
     }
-    private requestAnimationFrame() {
+    protected abstract step(newTimestamp: number): void;
+    protected requestAnimationFrame() {
         if (this.currentRequest) {
             window.cancelAnimationFrame(this.currentRequest);
         }
@@ -25,7 +24,18 @@ export class EaseInOut {
             this.step(timestamp);
         });
     }
-    private step(newTimestamp: number) {
+}
+
+/**
+ * @public
+ */
+export class EaseInOut extends Base {
+    private radius: number;
+    public start(initialValue: number, targetValue: number, duration = 500) {
+        super.start(initialValue, targetValue, duration);
+        this.radius = (targetValue - initialValue) / 2;
+    }
+    protected step(newTimestamp: number) {
         if (newTimestamp < this.oldTimestamp) {
             this.requestAnimationFrame();
             return;
@@ -44,31 +54,13 @@ export class EaseInOut {
 /**
  * @public
  */
-export class EaseIn {
+export class EaseIn extends Base {
     private radius: number;
-    private count: number;
-    private oldTimestamp: number;
-    private targetValue: number;
-    private duration: number;
-    private currentRequest: number;
-    constructor(private updated: (currentValue: number) => void) { }
     public start(initialValue: number, targetValue: number, duration = 500) {
-        this.targetValue = targetValue;
-        this.duration = duration;
-        this.count = 0;
+        super.start(initialValue, targetValue, duration);
         this.radius = targetValue - initialValue;
-        this.oldTimestamp = performance.now();
-        this.requestAnimationFrame();
     }
-    private requestAnimationFrame() {
-        if (this.currentRequest) {
-            window.cancelAnimationFrame(this.currentRequest);
-        }
-        this.currentRequest = window.requestAnimationFrame(timestamp => {
-            this.step(timestamp);
-        });
-    }
-    private step(newTimestamp: number) {
+    protected step(newTimestamp: number) {
         if (newTimestamp < this.oldTimestamp) {
             this.requestAnimationFrame();
             return;
@@ -87,31 +79,13 @@ export class EaseIn {
 /**
  * @public
  */
-export class EaseOut {
+export class EaseOut extends Base {
     private radius: number;
-    private count: number;
-    private oldTimestamp: number;
-    private targetValue: number;
-    private duration: number;
-    private currentRequest: number;
-    constructor(private updated: (currentValue: number) => void) { }
     public start(initialValue: number, targetValue: number, duration = 500) {
-        this.targetValue = targetValue;
-        this.duration = duration;
-        this.count = 0;
+        super.start(initialValue, targetValue, duration);
         this.radius = targetValue - initialValue;
-        this.oldTimestamp = performance.now();
-        this.requestAnimationFrame();
     }
-    private requestAnimationFrame() {
-        if (this.currentRequest) {
-            window.cancelAnimationFrame(this.currentRequest);
-        }
-        this.currentRequest = window.requestAnimationFrame(timestamp => {
-            this.step(timestamp);
-        });
-    }
-    private step(newTimestamp: number) {
+    protected step(newTimestamp: number) {
         if (newTimestamp < this.oldTimestamp) {
             this.requestAnimationFrame();
             return;
@@ -122,6 +96,31 @@ export class EaseOut {
             return;
         }
         this.updated(this.targetValue - Math.round(this.radius - this.radius * Math.sin(this.count)));
+        this.oldTimestamp = newTimestamp;
+        this.requestAnimationFrame();
+    }
+}
+
+/**
+ * @public
+ */
+export class Linear extends Base {
+    private offset: number;
+    public start(initialValue: number, targetValue: number, duration = 500) {
+        super.start(initialValue, targetValue, duration);
+        this.offset = targetValue - initialValue;
+    }
+    protected step(newTimestamp: number) {
+        if (newTimestamp < this.oldTimestamp) {
+            this.requestAnimationFrame();
+            return;
+        }
+        this.count += (newTimestamp - this.oldTimestamp) / this.duration;
+        if (this.count > 1) {
+            this.updated(this.targetValue);
+            return;
+        }
+        this.updated(this.targetValue - Math.round(this.offset - this.offset * this.count));
         this.oldTimestamp = newTimestamp;
         this.requestAnimationFrame();
     }
