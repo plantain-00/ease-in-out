@@ -15,11 +15,14 @@ export abstract class Base {
         this.oldTimestamp = performance.now();
         this.requestAnimationFrame();
     }
-    protected abstract step(newTimestamp: number): void;
-    protected requestAnimationFrame() {
+    public stop() {
         if (this.currentRequest) {
             window.cancelAnimationFrame(this.currentRequest);
         }
+    }
+    protected abstract step(newTimestamp: number): void;
+    protected requestAnimationFrame() {
+        this.stop();
         this.currentRequest = window.requestAnimationFrame(timestamp => {
             this.step(timestamp);
         });
