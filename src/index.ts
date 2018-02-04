@@ -2,11 +2,11 @@
  * @public
  */
 export abstract class Base {
-  protected count: number
-  protected oldTimestamp: number
-  protected targetValue: number
-  protected duration: number
-  private currentRequest: number
+  protected count = 0
+  protected oldTimestamp = 0
+  protected targetValue = 0
+  protected duration = 0
+  private currentRequest = 0
   constructor (protected updated: (currentValue: number) => void) { }
   public start (initialValue: number, targetValue: number, duration = 500) {
     this.targetValue = targetValue
@@ -33,7 +33,7 @@ export abstract class Base {
  * @public
  */
 export class EaseInOut extends Base {
-  private radius: number
+  private radius = 0
   public start (initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.radius = (targetValue - initialValue) / 2
@@ -58,7 +58,7 @@ export class EaseInOut extends Base {
  * @public
  */
 export class EaseIn extends Base {
-  private radius: number
+  private radius = 0
   public start (initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.radius = targetValue - initialValue
@@ -83,7 +83,7 @@ export class EaseIn extends Base {
  * @public
  */
 export class EaseOut extends Base {
-  private radius: number
+  private radius = 0
   public start (initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.radius = targetValue - initialValue
@@ -108,7 +108,7 @@ export class EaseOut extends Base {
  * @public
  */
 export class Linear extends Base {
-  private offset: number
+  private offset = 0
   public start (initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.offset = targetValue - initialValue
