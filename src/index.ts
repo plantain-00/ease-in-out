@@ -7,21 +7,21 @@ export abstract class Base {
   protected targetValue = 0
   protected duration = 0
   private currentRequest = 0
-  constructor (protected updated: (currentValue: number) => void) { }
-  public start (initialValue: number, targetValue: number, duration = 500) {
+  constructor(protected updated: (currentValue: number) => void) { }
+  public start(initialValue: number, targetValue: number, duration = 500) {
     this.targetValue = targetValue
     this.duration = duration
     this.count = 0
     this.oldTimestamp = performance.now()
     this.requestAnimationFrame()
   }
-  public stop () {
+  public stop() {
     if (this.currentRequest) {
       window.cancelAnimationFrame(this.currentRequest)
     }
   }
-  protected abstract step (newTimestamp: number): void
-  protected requestAnimationFrame () {
+  protected abstract step(newTimestamp: number): void
+  protected requestAnimationFrame() {
     this.stop()
     this.currentRequest = window.requestAnimationFrame(timestamp => {
       this.step(timestamp)
@@ -34,11 +34,11 @@ export abstract class Base {
  */
 export class EaseInOut extends Base {
   private radius = 0
-  public start (initialValue: number, targetValue: number, duration = 500) {
+  public start(initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.radius = (targetValue - initialValue) / 2
   }
-  protected step (newTimestamp: number) {
+  protected step(newTimestamp: number) {
     if (newTimestamp < this.oldTimestamp) {
       this.requestAnimationFrame()
       return
@@ -59,11 +59,11 @@ export class EaseInOut extends Base {
  */
 export class EaseIn extends Base {
   private radius = 0
-  public start (initialValue: number, targetValue: number, duration = 500) {
+  public start(initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.radius = targetValue - initialValue
   }
-  protected step (newTimestamp: number) {
+  protected step(newTimestamp: number) {
     if (newTimestamp < this.oldTimestamp) {
       this.requestAnimationFrame()
       return
@@ -84,11 +84,11 @@ export class EaseIn extends Base {
  */
 export class EaseOut extends Base {
   private radius = 0
-  public start (initialValue: number, targetValue: number, duration = 500) {
+  public start(initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.radius = targetValue - initialValue
   }
-  protected step (newTimestamp: number) {
+  protected step(newTimestamp: number) {
     if (newTimestamp < this.oldTimestamp) {
       this.requestAnimationFrame()
       return
@@ -109,11 +109,11 @@ export class EaseOut extends Base {
  */
 export class Linear extends Base {
   private offset = 0
-  public start (initialValue: number, targetValue: number, duration = 500) {
+  public start(initialValue: number, targetValue: number, duration = 500) {
     super.start(initialValue, targetValue, duration)
     this.offset = targetValue - initialValue
   }
-  protected step (newTimestamp: number) {
+  protected step(newTimestamp: number) {
     if (newTimestamp < this.oldTimestamp) {
       this.requestAnimationFrame()
       return
