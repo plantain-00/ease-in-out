@@ -1,8 +1,12 @@
 {
   "name": "ease-in-out",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "An ease-in-out no-css animation library.",
   "main": "index.js",
+  "module": "index.js",
+  "unpkg": "ease-in-out.min.js",
+  "jsdelivr": "ease-in-out.min.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "clean-scripts build",
     "lint": "clean-scripts lint",

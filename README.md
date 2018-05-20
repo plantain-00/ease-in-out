@@ -6,6 +6,7 @@
 [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/github/plantain-00/ease-in-out?branch=master&svg=true)](https://ci.appveyor.com/project/plantain-00/ease-in-out/branch/master)
 [![npm version](https://badge.fury.io/js/ease-in-out.svg)](https://badge.fury.io/js/ease-in-out)
 [![Downloads](https://img.shields.io/npm/dm/ease-in-out.svg)](https://www.npmjs.com/package/ease-in-out)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/ease-in-out?compression=gzip)](https://unpkg.com/ease-in-out)
 
 An ease-in-out no-css animation library.
 
