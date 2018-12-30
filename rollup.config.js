@@ -3,9 +3,9 @@ import resolve from 'rollup-plugin-node-resolve'
 
 export default {
   input: 'dist/index.js',
-  name: 'EaseInOut',
   plugins: [resolve({ browser: true }), uglify()],
   output: {
+    name: 'EaseInOut',
     file: 'dist/ease-in-out.min.js',
     format: 'umd'
   }
