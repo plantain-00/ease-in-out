@@ -36,7 +36,7 @@
     "jasmine": "3.4.0",
     "markdownlint-cli": "0.15.0",
     "no-unused-export": "1.7.0",
-    "puppeteer": "1.14.0",
+    "puppeteer": "1.15.0",
     "rimraf": "2.6.3",
     "rollup": "1.10.1",
     "rollup-plugin-node-resolve": "4.2.3",
@@ -46,6 +46,6 @@
     "tslint-config-standard": "8.0.1",
     "tslint-sonarts": "1.9.0",
     "type-coverage": "1.13.0",
-    "typescript": "3.4.4"
+    "typescript": "3.4.5"
   }
 }
