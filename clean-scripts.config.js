@@ -10,8 +10,7 @@ module.exports = {
     'rollup --config rollup.config.js'
   ],
   lint: {
-    ts: `tslint ${tsFiles}`,
-    js: `standard ${jsFiles}`,
+    ts: `eslint --ext .js,.ts,.tsx ${tsFiles} ${jsFiles}`,
     export: `no-unused-export ${tsFiles}`,
     commit: `commitlint --from=HEAD~1`,
     markdown: `markdownlint README.md`,
@@ -21,10 +20,7 @@ module.exports = {
     'tsc -p spec',
     'jasmine'
   ],
-  fix: {
-    ts: `tslint --fix ${tsFiles}`,
-    js: `standard --fix ${jsFiles}`
-  },
+  fix: `eslint --ext .js,.ts,.tsx ${tsFiles} ${jsFiles} --fix`,
   screenshot: [
     new Service(`http-server -p 8000`),
     `tsc -p screenshots`,
