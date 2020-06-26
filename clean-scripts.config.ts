@@ -1,5 +1,4 @@
 const tsFiles = `"src/**/*.ts"`
-const jsFiles = `"*.config.js"`
 
 export default {
   build: [
@@ -8,11 +7,11 @@ export default {
     'rollup --config rollup.config.js'
   ],
   lint: {
-    ts: `eslint --ext .js,.ts,.tsx ${tsFiles} ${jsFiles}`,
+    ts: `eslint --ext .js,.ts,.tsx ${tsFiles}`,
     export: `no-unused-export ${tsFiles}`,
     markdown: `markdownlint README.md`,
     typeCoverage: 'type-coverage -p src --strict'
   },
   test: [],
-  fix: `eslint --ext .js,.ts,.tsx ${tsFiles} ${jsFiles} --fix`
+  fix: `eslint --ext .js,.ts,.tsx ${tsFiles} --fix`
 }
