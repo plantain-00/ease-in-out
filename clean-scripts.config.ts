@@ -4,7 +4,7 @@ export default {
   build: [
     'rimraf dist/',
     'tsc -p src',
-    'rollup --config rollup.config.js'
+    'rollup --config rollup.config.mjs'
   ],
   lint: {
     ts: `eslint --ext .js,.ts,.tsx ${tsFiles}`,
